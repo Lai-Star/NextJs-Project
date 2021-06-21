@@ -11,7 +11,6 @@ $asset-base-path: "../../../../styles" !default;
 @import "~bootstrap/scss/mixins";
 
 // Bootstrap components
-
 @import "~bootstrap/scss/root";
 @import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/type";
@@ -46,54 +45,50 @@ $asset-base-path: "../../../../styles" !default;
 @import "~bootstrap/scss/print";
 
 // Custom components
-
-@import "blk-design-system-react/custom/alerts.scss";
-@import "blk-design-system-react/custom/buttons.scss";
-@import "blk-design-system-react/custom/dropdown.scss";
-@import "blk-design-system-react/custom/footer.scss";
-@import "blk-design-system-react/custom/forms.scss";
-@import "blk-design-system-react/custom/images.scss";
-@import "blk-design-system-react/custom/modal.scss";
-@import "blk-design-system-react/custom/navbar.scss";
-@import "blk-design-system-react/custom/type.scss";
-@import "blk-design-system-react/custom/icons.scss";
-@import "blk-design-system-react/custom/tables";
-@import "blk-design-system-react/custom/checkboxes-radio";
-@import "blk-design-system-react/custom/fixed-plugin";
-@import "blk-design-system-react/custom/pagination.scss";
-@import "blk-design-system-react/custom/misc.scss";
-@import "blk-design-system-react/custom/rtl.scss";
-@import "blk-design-system-react/custom/input-group.scss";
-@import "blk-design-system-react/custom/example-pages.scss";
-@import "blk-design-system-react/custom/progress.scss";
-@import "blk-design-system-react/custom/badge.scss";
-@import "blk-design-system-react/custom/pills.scss";
-@import "blk-design-system-react/custom/tabs.scss";
-@import "blk-design-system-react/custom/info-areas.scss";
+@import "blk-design-system-react/custom/_alerts.scss";
+@import "blk-design-system-react/custom/_buttons.scss";
+@import "blk-design-system-react/custom/_dropdown.scss";
+@import "blk-design-system-react/custom/_footer.scss";
+@import "blk-design-system-react/custom/_forms.scss";
+@import "blk-design-system-react/custom/_images.scss";
+@import "blk-design-system-react/custom/_modal.scss";
+@import "blk-design-system-react/custom/_navbar.scss";
+@import "blk-design-system-react/custom/_type.scss";
+@import "blk-design-system-react/custom/_icons.scss";
+@import "blk-design-system-react/custom/_tables";
+@import "blk-design-system-react/custom/_checkboxes-radio";
+@import "blk-design-system-react/custom/_fixed-plugin";
+@import "blk-design-system-react/custom/_pagination.scss";
+@import "blk-design-system-react/custom/_misc.scss";
+@import "blk-design-system-react/custom/_rtl.scss";
+@import "blk-design-system-react/custom/_input-group.scss";
+@import "blk-design-system-react/custom/_example-pages.scss";
+@import "blk-design-system-react/custom/_progress.scss";
+@import "blk-design-system-react/custom/_badge.scss";
+@import "blk-design-system-react/custom/_pills.scss";
+@import "blk-design-system-react/custom/_tabs.scss";
+@import "blk-design-system-react/custom/_info-areas.scss";
 
 // Sections
-@import "blk-design-system-react/custom/sections.scss";
+@import "blk-design-system-react/custom/_sections.scss";
 
 // Vendor / Plugins
-
-@import "blk-design-system-react/custom/vendor/plugin-perfect-scrollbar.scss";
-@import "blk-design-system-react/custom/vendor/plugin-animate-bootstrap-notify.scss";
-@import "blk-design-system-react/custom/vendor/plugin-bootstrap-switch.scss";
-@import "blk-design-system-react/custom/vendor/plugin-nouislider.scss";
-@import "blk-design-system-react/custom/vendor/plugin-datetimepicker.scss";
+@import "blk-design-system-react/custom/vendor/_plugin-perfect-scrollbar.scss";
+@import "blk-design-system-react/custom/vendor/_plugin-animate-bootstrap-notify.scss";
+@import "blk-design-system-react/custom/vendor/_plugin-bootstrap-switch.scss";
+@import "blk-design-system-react/custom/vendor/_plugin-nouislider.scss";
+@import "blk-design-system-react/custom/vendor/_plugin-datetimepicker.scss";
 
 // Cards
-
-@import "blk-design-system-react/custom/card";
-@import "blk-design-system-react/custom/cards/card-chart";
-@import "blk-design-system-react/custom/cards/card-map";
-@import "blk-design-system-react/custom/cards/card-user";
-@import "blk-design-system-react/custom/cards/card-task";
-@import "blk-design-system-react/custom/cards/card-plain";
-@import "blk-design-system-react/custom/cards/card-register";
-@import "blk-design-system-react/custom/cards/card-stats";
-@import "blk-design-system-react/custom/cards/card-chart";
+@import "blk-design-system-react/custom/_card";
+@import "blk-design-system-react/custom/cards/_card-chart";
+@import "blk-design-system-react/custom/cards/_card-map";
+@import "blk-design-system-react/custom/cards/_card-user";
+@import "blk-design-system-react/custom/cards/_card-task";
+@import "blk-design-system-react/custom/cards/_card-plain";
+@import "blk-design-system-react/custom/cards/_card-register";
+@import "blk-design-system-react/custom/cards/_card-stats";
+@import "blk-design-system-react/custom/cards/_card-chart";
 
 // React Differences
-
 @import "blk-design-system-react/react/react-differences";
