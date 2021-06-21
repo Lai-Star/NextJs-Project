@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Footer from "@components/Footer";
 import Profile from "@components/Profile";
-import Navbars from "@components/Navbars";
 
 export default function Home() {
   return (

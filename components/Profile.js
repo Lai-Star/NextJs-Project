@@ -1,7 +1,5 @@
 import React from "react";
 import classnames from "classnames";
-import Header from "@components/Header";
-import Navbars from "@components/Navbars";
 import PerfectScrollbar from "perfect-scrollbar";
 import {
   Button,
