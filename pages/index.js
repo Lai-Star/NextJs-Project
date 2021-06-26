@@ -11,7 +11,6 @@ export default function Home() {
       </Head>
 
       <main>
-        {/* <Navbars /> */}
         <Profile />
       </main>
 
