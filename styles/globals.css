@@ -34,3 +34,14 @@ code {
   justify-content: center;
   align-items: center;
 }
+
+.carousel-item > div > p {
+  font-weight: bold;
+  color: #ffd382;
+}
+
+.carousel-caption {
+  bottom: -25px !important;
+  right: 5% !important;
+  text-align: right !important;
+}
