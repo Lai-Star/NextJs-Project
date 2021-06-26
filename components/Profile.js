@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 import classnames from "classnames";
 import PerfectScrollbar from "perfect-scrollbar";
 import {
@@ -6,11 +7,9 @@ import {
   Card,
   CardHeader,
   CardBody,
-  Label,
   FormGroup,
   Form,
   Input,
-  FormText,
   NavItem,
   NavLink,
   Nav,
@@ -24,30 +23,35 @@ import {
   UncontrolledCarousel,
   Progress,
 } from "reactstrap";
+import Navbars from "./Navbars";
 import path5Img from "./../styles/img/path5.png";
-import denysImg from "../styles/img/denys.jpg";
 
 const carouselItems = [
   {
     src: "/mockup-all-devices-rehber.png" /* require("./../styles/img/denys.jpg").default */,
     altText: "Kocaeli Büyükşehir Belediyesi Rehberi",
-    caption: "Kocaeli Büyükşehir Belediyesi - Rehberi",
+    caption: "Şehir Rehberi - Kocaeli BB",
+    key: 1,
   },
   {
-    src: "/denys.jpg" /* require("./../styles/img/fabien-bazanegue.jpg").default */,
-    altText: "Slide 2",
-    caption: "Somewhere Beyond, United States",
+    src: "/enbis-phone-tablet-mokcup.png",
+    altText: "ENBİS Kocaeli Büyükşehir Belediyesi",
+    caption: "Enerji Bilgi Sistemi - Kocaeli BB",
+    key: 2,
   },
   {
-    src: "/denys.jpg" /* require("./../styles/img/mark-finn.jpg").default */,
-    altText: "Slide 3",
-    caption: "Stocks, United States",
+    src: "/food-recipe-2-phones.png",
+    altText: "Yemek Tarifleri - Freelance",
+    caption: "Delicious Recipes",
+    key: 3,
   },
 ];
 
 let ps = null;
 
 export default function ProfilePage() {
+  const router = useRouter();
+
   const [tabs, setTabs] = React.useState(1);
   React.useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -68,22 +72,23 @@ export default function ProfilePage() {
       document.body.classList.toggle("profile-page");
     };
   }, []);
+
+  useEffect(() => {
+    const path = window.location.hash;
+    console.log(path, window.location.pathname);
+    if (path?.includes("#")) {
+      router.push(window.location.pathname.replace("#", "#aba"));
+    }
+  });
+
   return (
     <>
-      {/* <Header /> */}
-      {/* <Navbars /> */}
+      <Navbars />
       <div className="wrapper">
-        <div className="page-header">
-          <img
-            alt="..."
-            className="dots"
-            src={path5Img /* require("./../styles/img/dots.png").default */}
-          />
-          <img
-            alt="..."
-            className="path"
-            src={path5Img} /* {require("./../styles/img/path5.png").default} */
-          />
+        <div id="my-profile" className="section">
+          {/*  className="page-header" */}
+          <img alt="dots-image" /* className="dots" */ src={"/dots.png"} />
+          <img alt="path-image" className="path" src={"/path5.png"} />
           <Container className="align-items-center">
             <Row>
               <Col lg="6" md="6">
@@ -140,11 +145,11 @@ export default function ProfilePage() {
                 <Card className="card-coin card-plain">
                   <CardHeader>
                     <img
-                      alt="..."
                       className="img-center img-fluid rounded-circle"
-                      src={require("../styles/img/mike.jpg").default}
+                      alt="ABA cartoon"
+                      src={"/aba-cartoon.png"}
                     />
-                    <h4 className="title">Transactions</h4>
+                    <h4 className="title">Profilim</h4>
                   </CardHeader>
                   <CardBody>
                     <Nav
@@ -298,12 +303,18 @@ export default function ProfilePage() {
             </Row>
           </Container>
         </div>
-        <div className="section">
+        <div id="my-projects" className="section">
           <Container>
             <Row className="justify-content-between">
               <Col md="6">
                 <Row className="justify-content-between align-items-center">
-                  <UncontrolledCarousel items={carouselItems} />
+                  <UncontrolledCarousel
+                    keyboard
+                    enableTouch
+                    pause="hover"
+                    items={carouselItems}
+                    onChange={(evt) => console.log(evt)}
+                  />
                 </Row>
               </Col>
               <Col md="5">
@@ -339,7 +350,7 @@ export default function ProfilePage() {
             </Row>
           </Container>
         </div>
-        <section className="section">
+        <div id="contact-us" className="section">
           <Container>
             <Row>
               <Col md="6">
@@ -445,7 +456,7 @@ export default function ProfilePage() {
               </Col>
             </Row>
           </Container>
-        </section>
+        </div>
       </div>
     </>
   );
