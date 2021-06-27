@@ -28,8 +28,8 @@ export default function Footer() {
           <Row>
             <img src="/aba-logo-alpha.png" className="mb-2" alt="ABA Logo" />
           </Row>
-          <Row>
-            <span className="text-center">Ahmet Buğra Aydın - 2021</span>
+          <Row className="justify-content-center">
+            <span>Ahmet Buğra Aydın - 2021</span>
           </Row>
         </Col>
         <Col md="4">
