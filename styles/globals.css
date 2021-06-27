@@ -26,12 +26,18 @@ code {
   font-family: Menlo, Monaco, Lucida Console, Courier New, monospace;
 }
 
+.section {
+  margin: 0 5%;
+  height: 100vh;
+}
+
 .container {
   height: 100vh;
-  display: contents; /* ABA old: flex */
+  display: contents;
   margin: 0 30px;
   flex-direction: column;
   justify-content: center;
+  align-content: center;
   align-items: center;
 }
 
