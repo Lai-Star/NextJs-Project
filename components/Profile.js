@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import classnames from "classnames";
 import PerfectScrollbar from "perfect-scrollbar";
 import {
   Button,
@@ -20,30 +19,32 @@ import {
   Row,
   Col,
   UncontrolledTooltip,
-  UncontrolledCarousel,
   Progress,
+  Carousel,
+  CarouselItem,
+  CarouselCaption,
+  CarouselControl,
+  CarouselIndicators,
 } from "reactstrap";
+import Link from "next/link";
+import classnames from "classnames";
 import Navbars from "./Navbars";
-import path5Img from "./../styles/img/path5.png";
 
 const carouselItems = [
   {
-    src: "/mockup-all-devices-rehber.png" /* require("./../styles/img/denys.jpg").default */,
+    src: "/mockup-all-devices-rehber.png",
     altText: "Kocaeli Büyükşehir Belediyesi Rehberi",
     caption: "Şehir Rehberi - Kocaeli BB",
-    key: 1,
   },
   {
     src: "/enbis-phone-tablet-mokcup.png",
     altText: "ENBİS Kocaeli Büyükşehir Belediyesi",
     caption: "Enerji Bilgi Sistemi - Kocaeli BB",
-    key: 2,
   },
   {
     src: "/food-recipe-2-phones.png",
     altText: "Yemek Tarifleri - Freelance",
     caption: "Delicious Recipes",
-    key: 3,
   },
 ];
 
@@ -52,7 +53,12 @@ let ps = null;
 export default function ProfilePage() {
   const router = useRouter();
 
+  // slider states
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [animating, setAnimating] = useState(false);
+
   const [tabs, setTabs] = React.useState(1);
+
   React.useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
       document.documentElement.className += " perfect-scrollbar-on";
@@ -80,6 +86,76 @@ export default function ProfilePage() {
       router.push(window.location.pathname.replace("#", "#aba"));
     }
   });
+
+  const handleNextSlide = () => {
+    if (animating) return;
+    const nextIndex =
+      activeIndex === carouselItems.length - 1 ? 0 : activeIndex + 1;
+    setActiveIndex(nextIndex);
+  };
+
+  const handlePreviousSlide = () => {
+    if (animating) return;
+    const nextIndex =
+      activeIndex === 0 ? carouselItems.length - 1 : activeIndex - 1;
+    setActiveIndex(nextIndex);
+  };
+
+  const handleActiveIndex = (newIndex) => {
+    if (animating) return;
+    setActiveIndex(newIndex);
+  };
+
+  const slides = carouselItems.map((item, i) => {
+    return (
+      <CarouselItem
+        key={i}
+        onExiting={() => setAnimating(true)}
+        onExited={() => setAnimating(false)}
+      >
+        <img src={item.src} alt={item.altText} />
+        <CarouselCaption
+          captionText={item.caption}
+          captionHeader={item.caption}
+        />
+      </CarouselItem>
+    );
+  });
+
+  const projectTexts = [
+    <div key={0}>
+      <p className="profile-description text-left">
+        Şehir Rehberi uygulaması, Kocaeli'deki donatı (POI), hat, durak, parsel
+        vb. bilgilerini aratabildiğiniz yerel bir Maps uygulamasıdır. Kocaeli
+        Büyükşehir Belediyesi için React ile yapılmıştır.
+      </p>
+      <div className="btn-wrapper pt-3">
+        <Link href="https://rehber.kocaeli.bel.tr/" passHref>
+          <Button className="btn-simple" color="primary" target="_blank">
+            <i className="tim-icons icon-controller mr-1" /> Uygulama
+          </Button>
+        </Link>
+      </div>
+    </div>,
+    <p key={1} className="profile-description text-left">
+      Enerji bilgi sistemi, elektrik ve mekanik envanterinin konum bazlı
+      kaydedildiği ve raporlandığı kurumiçi bir uygulamadır. Kocaeli Büyühşehir
+      Belediyesi için React ile geliştirilmiştir.
+    </p>,
+    <div key={2}>
+      <p className="profile-description text-left">
+        Yemek tariflerini arayabileceğiniz bir mobil uygulamasıdır. React Native
+        ile freelance olarak geliştirilmiştir.
+      </p>
+      <div className="btn-wrapper pt-3">
+        <Link href="https://github.com/bugraaydin1/recipe-app" passHref>
+          <Button className="btn-simple" color="primary" target="_blank">
+            <i className="fab fa-github fa-1x mr-1" /> Uygulama
+          </Button>
+        </Link>
+      </div>
+    </div>,
+  ];
 
   return (
     <>
@@ -216,7 +292,14 @@ export default function ProfilePage() {
                           <tbody>
                             <tr>
                               <td className="text-center">1</td>
-                              <td>Kocaeli Rehberi</td>
+                              <td>
+                                <a
+                                  href="https://rehber.kocaeli.bel.tr/"
+                                  target="_blank"
+                                >
+                                  Kocaeli Rehberi
+                                </a>
+                              </td>
                               <td>Kocaeli Büyükşehir Belediyesi</td>
                               <td className="text-center">
                                 <div className="progress-container progress-success">
@@ -308,44 +391,37 @@ export default function ProfilePage() {
             <Row className="justify-content-between">
               <Col md="6">
                 <Row className="justify-content-between align-items-center">
-                  <UncontrolledCarousel
+                  <Carousel
                     keyboard
                     enableTouch
                     pause="hover"
-                    items={carouselItems}
-                    onChange={(evt) => console.log(evt)}
-                  />
+                    activeIndex={activeIndex}
+                    next={handleNextSlide}
+                    previous={handlePreviousSlide}
+                  >
+                    <CarouselIndicators
+                      items={carouselItems}
+                      activeIndex={activeIndex}
+                      onClickHandler={handleActiveIndex}
+                    />
+                    {slides}
+                    <CarouselControl
+                      direction="prev"
+                      directionText="Önceki"
+                      onClickHandler={handlePreviousSlide}
+                    />
+                    <CarouselControl
+                      direction="next"
+                      directionText="Sonraki"
+                      onClickHandler={handleNextSlide}
+                    />
+                  </Carousel>
                 </Row>
               </Col>
               <Col md="5">
                 <h1 className="profile-title text-left">Projelerim</h1>
                 <h5 className="text-on-back">02</h5>
-                <p className="profile-description text-left">
-                  An artist of considerable range, Ryan — the name taken by
-                  Melbourne-raised, Brooklyn-based Nick Murphy — writes,
-                  performs and records all of his own music, giving it a warm,
-                  intimate feel with a solid groove structure. An artist of
-                  considerable range.
-                </p>
-                <div className="btn-wrapper pt-3">
-                  <Button
-                    className="btn-simple"
-                    color="primary"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <i className="tim-icons icon-book-bookmark" /> Favorilere
-                    ekle
-                  </Button>
-                  <Button
-                    className="btn-simple"
-                    color="info"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <i className="tim-icons icon-bulb-63" /> Dahası...
-                  </Button>
-                </div>
+                {projectTexts[activeIndex]}
               </Col>
             </Row>
           </Container>
@@ -409,7 +485,7 @@ export default function ProfilePage() {
                       </Row>
                       <Button
                         className="btn-round float-right"
-                        color="primary"
+                        color="warning"
                         data-placement="right"
                         id="tooltip341148792"
                         type="button"
