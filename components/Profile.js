@@ -163,8 +163,8 @@ export default function ProfilePage() {
       <div className="wrapper">
         <div id="my-profile" className="section">
           {/*  className="page-header" */}
-          <img alt="dots-image" /* className="dots" */ src={"/dots.png"} />
-          <img alt="path-image" className="path" src={"/path5.png"} />
+          <img alt="dots-image" className="dots" src={"/dots.png"} />
+          <img alt="path-image" className="path" src={"/path3.png"} />
           <Container className="align-items-center">
             <Row>
               <Col lg="6" md="6">
@@ -294,8 +294,8 @@ export default function ProfilePage() {
                               <td className="text-center">1</td>
                               <td>
                                 <a
-                                  href="https://rehber.kocaeli.bel.tr/"
                                   target="_blank"
+                                  href="https://rehber.kocaeli.bel.tr/"
                                 >
                                   Kocaeli Rehberi
                                 </a>
@@ -310,7 +310,9 @@ export default function ProfilePage() {
                             </tr>
                             <tr>
                               <td className="text-center">2</td>
-                              <td>ENBİS - Envanter</td>
+                              <td>
+                                <a href="#">ENBİS - Envanter</a>
+                              </td>
                               <td>Kocaeli Büyükşehir Belediyesi</td>
                               <td className="text-center">
                                 <div className="progress-container progress-primary">
@@ -321,7 +323,14 @@ export default function ProfilePage() {
                             </tr>
                             <tr>
                               <td className="text-center">3</td>
-                              <td>Yemek Tarifleri</td>
+                              <td>
+                                <a
+                                  target="_blank"
+                                  href="https://github.com/bugraaydin1/recipe-app"
+                                >
+                                  Yemek Tarifleri
+                                </a>
+                              </td>
                               <td>ABA Freelance</td>
                               <td className="text-center">
                                 <div className="progress-container progress-warning">
