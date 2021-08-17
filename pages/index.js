@@ -8,6 +8,7 @@ export default function Home() {
       <Head>
         <title>Ahmet Buğra Aydın</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="yandex-verification" content="db7fcf4e78f77837" />
       </Head>
 
       <main>
